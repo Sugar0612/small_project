@@ -1,0 +1,5 @@
+﻿  main.cpp
+e:\vs c资料\vs2017\school\school_project\school_project\main.cpp(215): warning C4018: “<”: 有符号/无符号不匹配
+e:\vs c资料\vs2017\school\school_project\school_project\main.cpp(220): warning C4018: “<”: 有符号/无符号不匹配
+e:\vs c资料\vs2017\school\school_project\school_project\main.cpp(233): warning C4018: “<”: 有符号/无符号不匹配
+  school_project.vcxproj -> E:\vs C资料\vs2017\school\school_project\Debug\school_project.exe
