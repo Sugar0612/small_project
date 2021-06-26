@@ -11,24 +11,6 @@ MYSQL_RES *res;
 MYSQL_FIELD *field;
 MYSQL_ROW row;
 
-void hill_sort(vector<int>& buf) {
-	int n = buf.size();
-	int gap = n / 2;
-	while (gap > 0) {
-		for (int i = gap; i < n; ++i) {
-			int tmp = buf[i];
-			int j = i - gap;
-			while (j >= 0 && tmp < buf[j]) {
-				buf[j + gap] = buf[j];
-				j -= gap;
-			}
-			buf[j + gap] = tmp;
-		}
-		gap = gap / 2;
-	}
-}
-
-
 void init_vs_mysql() {
 	mysql_init(&sql);
 
@@ -50,14 +32,14 @@ void select_vs_mysql() {
 
 	res = mysql_store_result(&sql);
 
-	int n = mysql_num_fields(res); // ∑µªÿ◊÷∂Œ∏ˆ ˝
+	int n = mysql_num_fields(res); // ËøîÂõûÂ≠óÊÆµ‰∏™Êï∞
 	//for (int i = 0; i < n; ++i) {
-	//	field = mysql_fetch_field_direct(res, i); // ∑µªÿ◊÷∂Œ¿‡–Õ
+	//	field = mysql_fetch_field_direct(res, i); // ËøîÂõûÂ≠óÊÆµÁ±ªÂûã
 	//	cout << field->name << endl;
 	//}
 
 	while (1) {
-		row = mysql_fetch_row(res); // ≤Èø¥“ª∏ˆ◊÷∂Œƒ⁄»›
+		row = mysql_fetch_row(res); // Êü•Áúã‰∏Ä‰∏™Â≠óÊÆµÂÜÖÂÆπ
 		if (!row) break;
 		for (int i = 0; i < n; ++i) {
 			cout << row[i] << "  ";
@@ -77,20 +59,20 @@ void insert_vs_mysql(int id, char *name, int score, int class_) {
 }
 
 int main() {
-	// ∫Û∆⁄switch  µœ÷øÿ÷∆ æÕ∫√
+	// ÂêéÊúüswitch ÂÆûÁé∞ÊéßÂà∂ Â∞±Â•Ω
 
 
-	init_vs_mysql(); // ≥ı ºªØ	
-	select_vs_mysql(); // ≤Èø¥
+	init_vs_mysql(); // ÂàùÂßãÂåñ	
+	select_vs_mysql(); // Êü•Áúã
 	while (1) {
 		int id, score, class_;
 		char *name = new char(100);
-		cout << " ‰»Î–≈œ¢!" << endl;
+		cout << "ËæìÂÖ•‰ø°ÊÅØ!" << endl;
 		cin >> id >> name >> score >> class_;
-		insert_vs_mysql(id, name, score, class_); // ≤Â»Î
+		insert_vs_mysql(id, name, score, class_); // ÊèíÂÖ•
 
 		int s;
-		cout << " «∑ÒºÃ–¯? (1. go on, 2. stop)" << endl;
+		cout << "ÊòØÂê¶ÁªßÁª≠? (1. go on, 2. stop)" << endl;
 		cin >> s;
 		if (s == 2) break;
 	}
