@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QString>
 #include <QPushButton>
+#include "mybutton.h"
 
 class string_algorithm : public QWidget
 {
@@ -20,14 +21,14 @@ public:
                       "输入: hello \n"
                       "输出: tbxxs";
 
-    QString word = "abcdefghijklmnopqrstuvwxyz";
-    QString _word = "pjwcbqotmkhxlusdayerzivfng";
+    QString word = "abcdefghijklmnopqrstuvwxyz*";
+    QString _word = "pjwcbqotmkhxlusdayerzivfng+";
     QLineEdit *cin;
     QTextEdit *pro, *ans;
     QLabel *l_pro, *l_ans;
-    QPushButton *ok;
+    myButton *enpt, *dept;
 
-    void solution();
+    void solution_code(int act);  // encryption and decrypt
 signals:
 
 };

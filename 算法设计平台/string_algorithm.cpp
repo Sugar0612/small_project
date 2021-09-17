@@ -1,5 +1,8 @@
 #include "string_algorithm.h"
 #include <QMap>
+#include <QDebug>
+#include <algorithm>
+#include <qalgorithms.h>
 
 string_algorithm::string_algorithm(QWidget *parent) : QWidget(parent)
 {
@@ -34,33 +37,64 @@ string_algorithm::string_algorithm(QWidget *parent) : QWidget(parent)
 
 
     // ok
-    ok = new QPushButton("commit" ,this);
-    ok->resize(50, 30);
-    ok->move(330, 140);
+    enpt = new myButton(0);
+    enpt ->setParent(this);
+    enpt->setText("加密");
+    enpt->setGeometry(330, 140, 60, 30);
+
+    // dept
+    dept = new myButton(1);
+    dept ->setParent(this);
+    dept->setText("解密");
+    dept->setGeometry(330, 200, 60, 30);
 
     // ok cilcked
-    connect(ok, &QPushButton::clicked, this, &string_algorithm::solution);
+    connect(enpt, &myButton::my_clicked, this, &string_algorithm::solution_code);
+
+    // dept cilcked
+    connect(dept, &myButton::my_clicked, this, &string_algorithm::solution_code);
 }
 
-void string_algorithm::solution() {
-    QString pro = this->cin->text();
+void string_algorithm::solution_code(int act) {
+    if(0 == act) {  // encryption
+        QString pro = this->cin->text();
 
-    QMap<QChar, QChar> dict;
-    for(int i = 0; i < word.size(); ++i) {
-        QChar key = word[i], value = _word[i];
-        dict[key] = value;
-    }
-
-    QString ans = "";
-    for(auto c: pro) {
-        char w = c.toLatin1();
-        if(w - 'a' < 0 || w - 'a' > 25) {
-            this->ans->setText("无效输入");
-            return;
+        QMap<QChar, QChar> dict;
+        for(int i = 0; i < word.size(); ++i) {
+            QChar key = word[i], value = _word[i];
+            dict[key] = value;
         }
-        ans += dict[c];
+
+        QString ans = "";
+        for(auto c: pro) {
+            char w = c.toLatin1();
+            if(qFind(word.begin(), word.end(), c) == word.end()) {
+                this->ans->setText("无效输入");
+                return;
+            }
+            ans += dict[c];
+        }
+        this->ans->setText(ans);
     }
 
-    this->ans->setText(ans);
-}
+    else if(1 == act) {
+        QString pro = this->cin->text();
 
+        QMap<QChar, QChar> dict;
+        for(int i = 0; i < _word.size(); ++i) {
+            QChar key = _word[i], value = word[i];
+            dict[key] = value;
+        }
+
+        QString ans = "";
+        for(auto c: pro) {
+            char w = c.toLatin1();
+            if(qFind(_word.begin(), _word.end(), c) == _word.end()) {
+                this->ans->setText("无效输入");
+                return;
+            }
+            ans += dict[c];
+        }
+        this->ans->setText(ans);
+    }
+}

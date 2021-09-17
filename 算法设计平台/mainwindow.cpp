@@ -6,11 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    this ->resize(1000, 650);
     // Text string encryption algorithm Widget
     str_w = new string_algorithm();
 
-    t = new QLabel("  《算法设计与分析》\n     实验平台", this);
+    t = new QLabel("《算法设计与分析》\n     实验平台", this);
     t->setGeometry(0,20,this->width(), this->height());
     QFont font;
     font.setPointSize(60);

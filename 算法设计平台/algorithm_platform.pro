@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    string_algorithm.cpp
+    string_algorithm.cpp\
+    mybutton.cpp
 
 HEADERS += \
     mainwindow.h \
-    string_algorithm.h
+    string_algorithm.h\
+    mybutton.h
 
 FORMS += \
     mainwindow.ui
