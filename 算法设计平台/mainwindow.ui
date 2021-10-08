@@ -32,6 +32,7 @@
       <string>蛮力法</string>
      </property>
      <addaction name="string_algorithm"/>
+     <addaction name="actionlinasdg"/>
     </widget>
     <addaction name="menu_2"/>
    </widget>
@@ -41,6 +42,11 @@
   <action name="string_algorithm">
    <property name="text">
     <string>文本串加密算法</string>
+   </property>
+  </action>
+  <action name="actionlinasdg">
+   <property name="text">
+    <string>最大公因数与最小公倍数</string>
    </property>
   </action>
  </widget>

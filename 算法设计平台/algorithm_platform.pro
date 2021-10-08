@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     string_algorithm.cpp\
-    mybutton.cpp
+    mybutton.cpp\
+    num_algorithm.cpp
 
 HEADERS += \
     mainwindow.h \
     string_algorithm.h\
-    mybutton.h
+    mybutton.h\
+    num_algorithm.h
 
 FORMS += \
     mainwindow.ui
