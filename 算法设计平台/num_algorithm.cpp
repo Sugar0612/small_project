@@ -51,18 +51,30 @@ num_algorithm::num_algorithm(QWidget *parent) : QWidget(parent)
 bool num_algorithm::is_empty() {
     QString s_a = cout1->text();
     QString s_b = cout2->text();
-    if(s_a.size() == 0 || s_b.size() == 0 || (s_a == "0" && s_b == "0")) {
-        QString res = "无效输入!";
-        ans1->setText(res);
-        ans2->setText(res);
-        return false;
+
+    if(s_a.size() == 0 || s_b.size() == 0 || (s_a == "0" && s_b == "0")) return false;
+
+    for(QChar c: s_a) {
+        char c_buf = c.toLatin1();
+        if(c_buf - '0' < 0 || c_buf - '0' > 9) return false;
     }
+
+    for(QChar c: s_b) {
+        char c_buf = c.toLatin1();
+        if(c_buf - '0' < 0 || c_buf - '0' > 9) return false;
+    }
+
     return true;
 }
 
 
 void num_algorithm::Short_division() {
-    if(!is_empty()) return;
+    if(!is_empty()) {
+        QString res = "无效输入!";
+        ans1->setText(res);
+        ans2->setText(res);
+        return;
+    }
 
     a = cout1->text().toInt();
     b = cout2->text().toInt();
